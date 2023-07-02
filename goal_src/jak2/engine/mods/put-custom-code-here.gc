@@ -91,11 +91,17 @@
                 ;; (send-event *target* 'get-pickup 16 #x447a0000)
                 ;;(send-event *target* 'get-pickup 7 #x42c80000)
                 (logior! (-> *game-info* features) (game-feature gun gun-yellow gun-red gun-blue gun-dark board darkjak))
-              (if (not (= (-> *game-info* skill-total) 0.0))
-                (initialize! *game-info* 'game (the-as game-save #f) (the-as string #f))
+              (if (> (-> *game-info* skill-total) 0.0)
+               (begin
+               (initialize! *game-info* 'game (the-as game-save #f) (the-as string #f))
+                 (spawn-jak1-orbs)
+               
+               )
               )  
-                
+
+            
       (spawn-jak1-orbs)
+              
       (none)
       )
 

@@ -2970,33 +2970,74 @@ This commonly includes things such as:
   )
 
 ;;bad dont do this
+(defmacro set-vector! (v xv yv zv wv)
+  "Set all fields in a vector"
+  (with-gensyms (vec)
+     `(let ((,vec ,v))
+       (set! (-> ,vec x) ,xv)
+       (set! (-> ,vec y) ,yv)
+       (set! (-> ,vec z) ,zv)
+       (set! (-> ,vec w) ,wv)
+       ,vec
+       ))
+     )
+
+(defmacro set-vector-meters! (dst x y z)
+  `(set-vector! ,dst ,x  ,y  ,z (-> ,dst w))
+  )
+
+(defmacro static-vector-meters (x y z)
+  `(new 'static 'vector :x (meters ,x) :y (meters ,y) :z (meters ,z) :w 1.0)
+  )
+
+(defmacro static-vector-meters-wz (x y z)
+  `(new 'static 'vector :x (meters ,x) :y (meters ,y) :z (meters ,z) :w 0.0)
+  )
+
 (defmacro static-vector-meters (x y z)
   `(new 'static 'vector :x  ,x :y  ,y :z  ,z :w 1.0)
   )
   
   ;;end
 (defmacro spawn-skill (x y z bob? name)
-  `(begin 
-    (format 0 "trying to spawn ~A~%" ,name)
-    (let ((fax (new 'static 'fact-info)))
-      (set! (-> fax pickup-type) (pickup-type skill))
-      (set! (-> fax pickup-amount) 1.0)
-      (set! (-> fax pickup-spawn-amount) 1.0)
-      ;; make sure it doesn't timeout and disappear
-      (logior! (-> fax options) (actor-option fade-out))
-      (set! (-> fax fade-time) (the-as time-frame 0))
-      (when ,bob?
-        (logior! (-> fax options) (actor-option force-bob))
-        )
-      (let ((proc (ppointer->process (birth-pickup-at-point-named (static-vector-meters ,x ,y ,z) (pickup-type skill) 1.0 #t *active-pool* fax ,name))))
-        ;; (copy-string<-string (-> proc name) ,name) ;; lol this overwrote the skill type name and caused weird problems
-        (format 0 "spawned ~A~%" proc)
-        proc  ;; return proc
+  `(spawn-skill-internal ,x ,y ,z ,bob? ,name 1.0)
+  )
+
+(defmacro spawn-gold-skill (x y z bob? name)
+  `(spawn-skill-internal ,x ,y ,z ,bob? ,name (-> *FACT-bank* super-skill-inc))
+  )
+
+(defun spawn-skill-internal ((x float) (y float) (z float) (bob? symbol) (name string) (amount float))
+  (format 0 "trying to spawn ~A~%" name)
+  (cond
+    ((process-by-name name *active-pool*)
+      (format 0 "~A is already spawned, skipping")
+      )
+    (#f ;; TODO track collection
+      (format 0 "~A is already collected, skipping")
+      )
+    (else
+      (let ((fax (new 'static 'fact-info)))
+        (set! (-> fax pickup-type) (pickup-type skill))
+        (set! (-> fax pickup-amount) amount)
+        (set! (-> fax pickup-spawn-amount) amount)
+        ;; make sure it doesn't timeout and disappear
+        (logior! (-> fax options) (actor-option fade-out))
+        (set! (-> fax fade-time) (the-as time-frame 0))
+        (when bob?
+          (logior! (-> fax options) (actor-option force-bob))
+          )
+        (let ((vec (new 'stack-no-clear 'vector)))
+          (set-vector-meters! vec x y z)
+          (let ((proc (ppointer->process (birth-pickup-at-point-named vec (pickup-type skill) amount #t *active-pool* fax name))))
+            ;; (copy-string<-string (-> proc name) ,name) ;; lol this overwrote the "skill" string for everyone
+            (format 0 "spawned ~A~%" proc)
+            )
+          )
         )
       )
     )
   )
-
 
 (defun spawn-jak1-orbs ()
 
