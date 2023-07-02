@@ -82,7 +82,7 @@
 
     (defun runs-on-jak-spawn ()
       ;; Code here runs every time jak spawns (loading a file new game or death)   
-                (set! *cheat-mode* #f)
+               ;; (set! *cheat-mode* #f)
                 ;; (send-event *target* 'get-pickup 18 #x447a0000)
                 ;; (send-event *target* 'get-pickup 17 #x447a0000)
                 ;; (send-event *target* 'get-pickup 13 #x447a0000)

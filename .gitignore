@@ -61,14 +61,17 @@ svnrev.h
 common/versions/revision.h
 ci-artifacts/
 !out/
+
 out/jak1/obj
 out/jak1/fr3
 out/jak1/iso
+
 !out/build/
 out/build/*
 !out/build/Release
 out/build/Release/*
 !out/build/Release/bin/
+
 out/build/Release/bin/*
 !out/build/Release/bin/SDL2.dll
 !out/build/Release/bin/openal32.dll
@@ -92,3 +95,4 @@ __pycache__/
 /TODO.md
 unifont-15.0.03.ttf
 .vscode/settings.json
+!out/jak1/invisiblelegacyfr3/
