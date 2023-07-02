@@ -348,7 +348,7 @@
          )
        )
      (set! (-> obj death-time) (-> *display* game-clock frame-counter))
-            (runs-on-jak-death 'blackout)
+           
      )
     )
   (kill-current-talker (the-as symbol '()) '() 'die)

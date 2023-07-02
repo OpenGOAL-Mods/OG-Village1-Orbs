@@ -40,7 +40,7 @@
     )
   (the-as continue-point #f)
   )
-
+(defun-extern runs-on-jak-spawn(none))
 (defstate target-continue (target)
   :event (behavior ((proc process) (arg1 int) (event-type symbol) (event event-message-block))
     (local-vars (v0-0 object))
