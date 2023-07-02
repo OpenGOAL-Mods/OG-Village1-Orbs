@@ -61,7 +61,9 @@ svnrev.h
 common/versions/revision.h
 ci-artifacts/
 !out/
-out/*
+out/jak1/obj
+out/jak1/fr3
+out/jak1/iso
 !out/build/
 out/build/*
 !out/build/Release
