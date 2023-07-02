@@ -3078,6 +3078,24 @@ This commonly includes things such as:
 (spawn-skill  415619.5000    7665.5996 -547126.0625 #t "money-3539")
 (spawn-skill  485846.9375    9118.7119 -547148.7500 #t "money-3540")
 (spawn-skill  426737.8125   10137.8037 -511936.3125 #t "money-3541")
+
+;; spawn 15 more ontop of last orb so count is 50
+
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e1")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e2")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e3")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e4")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e5")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e6")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e7")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e8")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e9")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e10")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e11")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e12")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e13")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e14")
+(spawn-skill  899045.6875   14167.0205 -685706.2500 #t "money-e15")
 ;;beach
 ;; (spawn-skill -337028.4062   61788.1601 -1528317.6250 #t "villlage1-skill-1")
 ;; (spawn-skill -338476.8125   61788.1601 -1541901.2500 #t "village1-skill-2")
