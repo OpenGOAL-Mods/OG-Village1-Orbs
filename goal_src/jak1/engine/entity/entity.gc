@@ -1506,7 +1506,7 @@
 
     (if (= (-> arg1 etype) money)
     (begin
-    (format #t "(spawn-skillentity1 ~F ~F ~F #t ~S)~%" (-> arg0 root trans x)(-> arg0 root trans y)(-> arg0 root trans z)"village1-skill-1")
+    (format #t "(spawn-skill ~F ~F ~F #t ~S)~%" (-> arg0 root trans x)(-> arg0 root trans y)(-> arg0 root trans z) (-> arg0 name))
     ;;    (spawn-skill -103.6   1.5     -38.5   #t "village1-skill-20") ;; corner by stairs to beach
     )
     
