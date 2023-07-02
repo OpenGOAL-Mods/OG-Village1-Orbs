@@ -1262,6 +1262,13 @@
   (initialize-params obj 0 (the-as float 1024.0))
   (update-transforms! (-> obj root-override))
   (go (method-of-object obj wait))
+     (if (= (-> obj type) money)
+    (begin
+    (format #t "(spawn-skillcoll1 ~F ~F ~F #t ~S)~%" (-> obj root trans x)(-> obj root trans y)(-> obj root trans z)"village1-skill-1")
+    ;;    (spawn-skill -103.6   1.5     -38.5   #t "village1-skill-20") ;; corner by stairs to beach
+    )
+    
+    )
   (none)
   )
 
@@ -1286,6 +1293,13 @@
   (update-transforms! (-> self root-override))
   (set! (-> self event-hook) (-> (method-of-object self wait) event))
   (go-virtual wait)
+       (if (= (-> self type) money)
+    (begin
+    (format #t "(spawn-skillcoll2 ~F ~F ~F #t ~S)~%" (-> self root trans x)(-> self root trans y)(-> self root trans z)"village1-skill-1")
+    ;;    (spawn-skill -103.6   1.5     -38.5   #t "village1-skill-20") ;; corner by stairs to beach
+    )
+    
+    )
   (none)
   )
 

@@ -348,6 +348,7 @@
          )
        )
      (set! (-> obj death-time) (-> *display* game-clock frame-counter))
+            (runs-on-jak-death 'blackout)
      )
     )
   (kill-current-talker (the-as symbol '()) '() 'die)
@@ -370,7 +371,7 @@
           "demo-start"
           )
          (*debug-segment*
-           "game-start"
+           "village1-start"
            )
          (else
            "title-start"

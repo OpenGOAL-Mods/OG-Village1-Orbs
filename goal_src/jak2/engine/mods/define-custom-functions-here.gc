@@ -92,6 +92,16 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
   `(-> *art-control* active-stream)
   )
 
+(defun in-bubble? ((x float) (y float) (z float) (w float))
+  (<= 
+    (vector-vector-distance 
+      (target-pos 0) 
+      (set-vector! (new-stack-vector0) x y z 1.0)
+      )
+    (/ w 2.0)
+    )
+  )
+
 ;;This function moves an actor to the given coordinates
 ;;example (move-actor farmer-3 3.0 74.0 -120.0)
 (defun move-actor ((actor-name string) (x float) (y float) (z float))
@@ -288,16 +298,7 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
   )
 
 
-;;This returns true or false if jak is within a bubble defined by coordiantes and width
-(defun in-bubble? ((x float) (y float) (z float) (w float))
-  (<= 
-    (vector-vector-distance 
-      (target-pos 0) 
-      (set-vector! (new-stack-vector0) x y z 1.0)
-      )
-    (/ w 2.0)
-    )
-  )
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Jak Color functions

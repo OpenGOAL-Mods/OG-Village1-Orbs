@@ -1242,6 +1242,7 @@
   `(or ,@(apply (lambda (x) `(begin (define-extern ,x type) (type-type? (-> obj etype) ,x))) types))
   )
 
+(define-extern money type)
 (defmethod birth! entity-actor ((obj entity-actor))
   "Create a process for this entity and start it."
   
@@ -1268,6 +1269,8 @@
                                       )
                          )
          )
+
+
     (cond
       ((not entity-process)
        (birth-log "could not birth because there is no process.~%")
@@ -1500,6 +1503,14 @@
   (set! (-> arg0 root trans quad) (-> arg1 extra trans quad))
   (quaternion-copy! (-> arg0 root quat) (-> arg1 quat))
   (vector-identity! (-> arg0 root scale))
+
+    (if (= (-> arg1 etype) money)
+    (begin
+    (format #t "(spawn-skillentity1 ~F ~F ~F #t ~S)~%" (-> arg0 root trans x)(-> arg0 root trans y)(-> arg0 root trans z)"village1-skill-1")
+    ;;    (spawn-skill -103.6   1.5     -38.5   #t "village1-skill-20") ;; corner by stairs to beach
+    )
+    
+    )
   (none)
   )
 

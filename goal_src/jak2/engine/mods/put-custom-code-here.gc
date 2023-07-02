@@ -82,7 +82,23 @@
 
     (defun runs-on-jak-spawn ()
       ;; Code here runs every time jak spawns (loading a file new game or death)   
-
+                (set! *cheat-mode* #f)
+                (send-event *target* 'get-pickup 18 #x447a0000)
+                (send-event *target* 'get-pickup 17 #x447a0000)
+                (send-event *target* 'get-pickup 13 #x447a0000)
+                (send-event *target* 'get-pickup 14 #x447a0000)
+                (send-event *target* 'get-pickup 15 #x447a0000)
+                (send-event *target* 'get-pickup 16 #x447a0000)
+                ;;(send-event *target* 'get-pickup 7 #x42c80000)
+                (logior! (-> *game-info* features) (game-feature gun gun-yellow gun-red gun-blue gun-dark board darkjak))
+                (let ((v0-7
+                        (logior (-> *game-info* debug-features) (game-feature gun gun-yellow gun-red gun-blue gun-dark board darkjak))
+                        )
+                      )
+                  (set! (-> *game-info* debug-features) v0-7)
+                  v0-7
+                  )
+      (spawn-jak1-orbs)
       (none)
       )
 
@@ -94,7 +110,7 @@
           )
         (('blackout)
           ;; Code here runs after jak dies (and any death cutscene finishes), during the blackout before he spawns
-
+        
           )
         )
       
